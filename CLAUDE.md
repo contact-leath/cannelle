@@ -8,7 +8,7 @@ Cannelle est mon application personnelle de recettes de cuisine. Je suis la seul
 - Toute l'interface est **en français**, avec un ton chaleureux et simple (tutoiement).
 
 ## Organisation du fichier
-- **CSS** : dans la balise `<style>` en haut du fichier. Les couleurs, rayons et polices sont des variables CSS dans `:root` (`--accent`, `--secondary`, `--radius`, `--font`…), avec une version mode sombre (`prefers-color-scheme: dark`).
+- **CSS** : dans la balise `<style>` en haut du fichier. Les couleurs, rayons et polices sont des variables CSS dans `:root` (`--accent`, `--secondary`, `--radius`, `--font`…). L'app n'a **pas de mode sombre** (retiré volontairement) : ne pas en rajouter.
 - **HTML** : une vue par section, repérée par un commentaire (`<!-- MAIN VIEW -->`, `<!-- DETAIL VIEW -->`, `<!-- ADD/EDIT VIEW -->`, `<!-- SAISONS VIEW (ACCUEIL) -->`, `<!-- MENU VIEW -->`…), plus des modales et des « bottom sheets » (filtres, choix d'ajout, choix du jour).
 - **Barre d'onglets** en bas : Saisons (accueil), Recettes (`home`), Menu, Courses. La navigation passe par `switchTab()`.
 - **JavaScript** : dans la balise `<script>` à la fin du fichier, en fonctions globales appelées par des `onclick`. Icônes : Tabler Icons (classes `ti ti-...`). Polices : Quicksand (texte) et Sora (titres).
@@ -28,7 +28,7 @@ Cannelle est mon application personnelle de recettes de cuisine. Je suis la seul
 
 ## Règles de travail
 1. **Ne jamais supprimer ni modifier en masse des données Supabase** (recettes, photos) sans me demander d'abord.
-2. **Suivre le design system** (voir la section ci-dessous) : utiliser les variables CSS existantes plutôt que de nouvelles couleurs codées en dur, et vérifier que ça rend bien en mode sombre.
+2. **Suivre le design system** (voir la section ci-dessous) : utiliser les variables CSS existantes plutôt que de nouvelles couleurs codées en dur.
 3. **Penser mobile d'abord** : l'appli est surtout utilisée sur iPhone (zones tactiles assez grandes, `safe-area` respectée, pas de survol obligatoire).
 4. **Modifier seulement ce qui est demandé.** Le fichier est gros : ne pas le réécrire ni le reformater en entier.
 5. **Tester avant d'envoyer** : ouvrir la page, vérifier qu'il n'y a pas d'erreur dans la console et que la fonctionnalité touchée marche.
@@ -45,7 +45,7 @@ Le design system de Cannelle est dans le dossier **`design-system/`**. C'est la 
 
 **Comment l'appliquer dans `index.html` :**
 - Les composants du design system sont écrits en React (`.jsx`) : ce sont des **modèles visuels**, pas du code à importer. On reproduit leur rendu en HTML/CSS/JS simple, dans le fichier unique, sans charger React ni les fichiers de `design-system/`.
-- Utiliser les variables CSS déjà présentes dans `:root` de l'app (tableau ci-dessous). Si une valeur du design system n'a pas encore d'équivalent (ex. `--primary-darker`, `--shadow-fab`, `--duration-base`), l'ajouter dans `:root` **sous le nom et avec la valeur du design system**, et prévoir sa version mode sombre si c'est une couleur.
+- Utiliser les variables CSS déjà présentes dans `:root` de l'app (tableau ci-dessous). Si une valeur du design system n'a pas encore d'équivalent (ex. `--primary-darker`, `--shadow-fab`, `--duration-base`), l'ajouter dans `:root` **sous le nom et avec la valeur du design system**.
 - Ne rien inventer : si un élément manque dans le design system (nouveau composant, nouvelle couleur…), me le proposer avant de le créer, puis mettre `design-system/readme.md` à jour une fois validé.
 - Les textes suivent les règles de rédaction du readme : tutoiement, casse de phrase, libellés « verbe + objet » (jamais « OK » seul), unités à la française (« 45 min », « 180 °C »), séparateur `·`.
 
@@ -69,4 +69,3 @@ Le design system de Cannelle est dans le dossier **`design-system/`**. C'est la 
 - **Emojis** : le design system dit « aucun emoji », mais chaque recette a un champ `emoji` affiché dans l'app.
 - **Gris clair du texte** : `--text3` vaut `#9b9c90` dans l'app, plus pâle que la limite du design system (`#767769`).
 - **Noms des variables** : l'app utilise encore les anciens noms (`--accent`…). Ne pas tout renommer sans mon accord.
-- **Mode sombre** : le design system ne le décrit pas. Garder les couleurs sombres actuelles de l'app et en prévoir une pour toute nouvelle couleur.
