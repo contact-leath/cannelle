@@ -1,0 +1,34 @@
+:root{
+  --font-display:"Sora",-apple-system,BlinkMacSystemFont,sans-serif;
+  --font-text:Quicksand,-apple-system,BlinkMacSystemFont,sans-serif;
+  --font-mono:Menlo,Monaco,monospace;
+
+  --weight-regular:400;
+  --weight-display:800;
+  --weight-medium:500;
+  --weight-semibold:600;
+  --weight-bold:700;
+
+  /* Échelle réelle du produit (px, mobile) */
+  --size-screen-title:28px;   /* Sora ExtraBold */
+  --size-section-title:20px;  /* Sora ExtraBold */
+  --size-card-title:18px;     /* Quicksand Bold */
+  --size-body:16px;           /* Quicksand Regular */
+  --size-label:13.5px;
+  --size-caption:14px;        /* Quicksand Medium */
+  --size-meta:12px;
+  --size-micro:11px;          /* méta sur photo, libellés tab bar : 10–11 */
+  --size-eyebrow:11.5px;      /* uppercase + letter-spacing */
+
+  --leading-tight:1.15;
+  --leading-snug:1.35;
+  --leading-body:1.5;
+  --tracking-eyebrow:1.4px;
+
+  /* Alias sémantiques */
+  --type-screen-title:var(--weight-display) var(--size-screen-title)/var(--leading-tight) var(--font-display);
+  --type-section-title:var(--weight-display) var(--size-section-title)/var(--leading-tight) var(--font-display);
+  --type-card-title:var(--weight-bold) var(--size-card-title)/var(--leading-snug) var(--font-text);
+  --type-body:var(--weight-regular) var(--size-body)/var(--leading-body) var(--font-text);
+  --type-caption:var(--weight-medium) var(--size-caption)/var(--leading-snug) var(--font-text);
+}

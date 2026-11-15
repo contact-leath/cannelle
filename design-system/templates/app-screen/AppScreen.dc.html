@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<!-- @template name="Écran d'app Cannelle" description="Écran mobile 430×900 : titre, recherche, bascule Livre/Atelier, grille de recettes, FAB et tab bar." -->
+<helmet>
+<script src="./ds-base.js"></script>
+<style>html,body{margin:0;height:100%}body{background:#F1F1E9;display:flex;align-items:center;justify-content:center;font-family:Quicksand,sans-serif;color:#1a1a18}*{box-sizing:border-box}a{color:#43640A;text-decoration:none}a:hover{color:#5A8311}</style>
+</helmet>
+<div style="position:relative;width:430px;height:900px;background:#FAFAF6;overflow:hidden;display:flex;flex-direction:column">
+<div style="flex:1;overflow-y:auto;padding:26px 16px 108px;display:flex;flex-direction:column;gap:16px">
+<h1 style="font-family:'Sora',sans-serif;font-size:28px;line-height:1.15;margin:0;font-weight:800">Recettes</h1>
+<x-import component-from-global-scope="CannelleDesignSystem_298ff7.TextField" icon="search" placeholder="Chercher une recette" hint-size="100%,48px"></x-import>
+<div style="display:flex;gap:8px">
+<x-import component-from-global-scope="CannelleDesignSystem_298ff7.Chip" selected="{{ true }}" hint-size="90px,36px">Livre · 6</x-import>
+<x-import component-from-global-scope="CannelleDesignSystem_298ff7.Chip" hint-size="90px,36px">Atelier · 3</x-import>
+</div>
+<div style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px">
+<x-import component-from-global-scope="CannelleDesignSystem_298ff7.RecipeCard" title="Tarte aux abricots" time="45 min" hint-size="100%,270px"></x-import>
+<x-import component-from-global-scope="CannelleDesignSystem_298ff7.RecipeCard" title="Risotto au citron" time="30 min" hint-size="100%,270px"></x-import>
+<x-import component-from-global-scope="CannelleDesignSystem_298ff7.RecipeCard" title="Soupe de courge rôtie" time="50 min" hint-size="100%,270px"></x-import>
+<x-import component-from-global-scope="CannelleDesignSystem_298ff7.RecipeCard" title="Clafoutis aux myrtilles" time="40 min" hint-size="100%,270px"></x-import>
+</div>
+</div>
+<x-import component-from-global-scope="CannelleDesignSystem_298ff7.Fab" style="position:absolute;right:16px;bottom:96px" hint-size="56px,56px"></x-import>
+<div style="position:absolute;left:16px;right:16px;bottom:16px">
+<x-import component-from-global-scope="CannelleDesignSystem_298ff7.TabBar" active="recettes" hint-size="100%,66px"></x-import>
+</div>
+</div>
+</x-dc>
+</body>
+</html>

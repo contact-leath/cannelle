@@ -1,0 +1,16 @@
+:root{
+  /* Le système est presque plat : les hairlines remplacent l'ombre.
+     Seuls les éléments qui flottent réellement en portent une. */
+  --shadow-none:none;
+  --shadow-fab:0 4px 14px rgba(0,0,0,0.18);
+  --shadow-knob:0 1px 3px rgba(0,0,0,0.2);   /* pastille de toggle */
+  --shadow-sheet:0 -8px 28px rgba(0,0,0,0.12);
+  --hairline:0.5px solid var(--border-subtle);
+  --hairline-strong:0.5px solid var(--border);
+
+  /* Mouvement */
+  --ease-standard:cubic-bezier(0.2,0,0.2,1); /* @kind other */
+  --duration-fast:120ms; /* @kind other */
+  --duration-base:180ms; /* @kind other */
+  --duration-sheet:260ms; /* @kind other */
+}

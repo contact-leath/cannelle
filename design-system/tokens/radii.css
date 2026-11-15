@@ -1,0 +1,8 @@
+:root{
+  --radius-field:8px;         /* champs, petites vignettes */
+  --radius-button:12px;
+  --radius-card:14px;         /* cartes, sheets, panneaux */
+  --radius-sheet:20px;        /* coins hauts d'un bottom sheet */
+  --radius-pill:999px;        /* chips, badges */
+  --radius-round:50%;         /* FAB, pastilles */
+}

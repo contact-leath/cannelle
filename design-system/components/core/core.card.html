@@ -1,0 +1,30 @@
+<!-- @dsCard group="Components" viewport="700x340" name="Core" subtitle="Button, Fab, Chip, Badge, Toggle, TextField, Icon" -->
+<!DOCTYPE html><html lang="fr"><head><meta charset="utf-8"><link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<style>body{margin:0;background:var(--bg);color:var(--text);font-family:var(--font-text)}*{box-sizing:border-box}a{color:var(--text-link)}a:hover{color:var(--text-link-hover)}.lbl{font-size:11px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--text3)}</style>
+</head><body><div id="root" style="padding:18px 20px"></div><script type="text/babel">
+const { Button, Fab, Chip, Badge, Toggle, TextField, Icon } = window.CannelleDesignSystem_298ff7;
+function Row({ label, children, align='center' }) {
+  return <div style={{display:'grid',gridTemplateColumns:'92px 1fr',gap:16,alignItems:align,padding:'12px 0',borderBottom:'0.5px solid var(--border-subtle)'}}>
+    <span className="lbl">{label}</span>
+    <div style={{display:'flex',gap:12,flexWrap:'wrap',alignItems:'center'}}>{children}</div></div>;
+}
+function Demo(){
+  const [on,setOn]=React.useState(true); const [sel,setSel]=React.useState('plat'); const [q,setQ]=React.useState('');
+  return <div>
+    <Row label="Button"><Button>Ajouter la recette</Button><Button variant="secondary">Enregistrer</Button><Button variant="text">Tout effacer</Button><Button disabled>Désactivé</Button></Row>
+    <Row label="Full width"><Button fullWidth icon="shopping-cart">Ajouter aux courses</Button></Row>
+    <Row label="Fab"><Fab /><Fab icon="flask" /></Row>
+    <Row label="Chip"><Chip selected={sel==='plat'} onClick={()=>setSel('plat')}>Plat</Chip><Chip selected={sel==='dessert'} onClick={()=>setSel('dessert')}>Dessert</Chip><Chip selected={sel==='entree'} onClick={()=>setSel('entree')}>Entrée</Chip></Row>
+    <Row label="Badge"><Badge>Plat</Badge><Badge hue="secondary">Rapide</Badge><Badge hue="fraise">Dessert</Badge><Badge hue="peche" tone="light">Atelier</Badge><Badge hue="myrtille" tone="vivid">De saison</Badge></Row>
+    <Row label="Toggle"><Toggle checked={on} onChange={setOn} label="Grouper par rayon" /><Toggle checked={!on} onChange={v=>setOn(!v)} /></Row>
+    <Row label="TextField" align="end"><TextField icon="search" placeholder="Chercher une recette" value={q} onChange={e=>setQ(e.target.value)} style={{width:220}} /><TextField label="Titre" placeholder="Tarte aux abricots" style={{width:220}} /></Row>
+    <div style={{display:'grid',gridTemplateColumns:'92px 1fr',gap:16,alignItems:'center',padding:'12px 0'}}><span className="lbl">Icon</span>
+      <div style={{display:'flex',gap:16,color:'var(--text2)'}}>{['leaf','book','calendar-week','shopping-cart','clock','flask','filter','heart'].map(n=><Icon key={n} name={n} size={22} />)}</div></div>
+  </div>;
+}
+ReactDOM.createRoot(document.getElementById('root')).render(<Demo />);
+</script></body></html>

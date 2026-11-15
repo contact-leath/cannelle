@@ -1,0 +1,48 @@
+:root{
+  /* ── Base neutrals ─────────────────────────────── */
+  --bg:#FAFAF6;
+  --surface:#ffffff;
+  --surface2:#F1F1E9;
+  --text:#1a1a18;
+  --text2:#656659;
+  --text3:#767769;            /* 4,6:1 sur --bg — plus clair interdit */
+
+  /* ── Primary (vert olive) ──────────────────────── */
+  --primary:#5A8311;
+  --primary-light:#EDF4DD;
+  --primary-dark:#43640A;
+  --primary-darker:#2F4707;   /* hover du primary-dark */
+  --primary-pastel:#C7E08A;
+  --primary-on-pastel:#3F5A12;
+
+  /* ── Secondary (jaune citron) ──────────────────── */
+  --secondary:#F7E364;
+  --secondary-light:#FDF7D5;
+  --secondary-dark:#7E6B0D;
+  --secondary-on-pastel:#6B5A08;
+
+  /* ── Teintes catégorie ─────────────────────────── */
+  --fraise:#F79CAE;   --fraise-light:#FCE7EB;   --fraise-vivid:#C93A57;   --fraise-on-pastel:#7C2437;
+  --peche:#FAAC85;    --peche-light:#FDEBE0;    --peche-vivid:#B9541F;    --peche-on-pastel:#6E2F0C;
+  --myrtille:#C3B4E8; --myrtille-light:#ECE7F8; --myrtille-vivid:#7A61CC; --myrtille-on-pastel:#423069;
+
+  /* ── Traits ────────────────────────────────────── */
+  --border:rgba(0,0,0,0.14);        /* hairline visible : champs, chips inactives */
+  --border-subtle:rgba(0,0,0,0.08); /* hairline discrète : cartes, séparateurs */
+
+  /* ── Alias sémantiques ─────────────────────────── */
+  --text-body:var(--text);
+  --text-muted:var(--text2);
+  --text-faint:var(--text3);
+  --text-on-primary:#ffffff;
+  --text-link:var(--primary-dark);
+  --text-link-hover:var(--primary);
+  --surface-page:var(--bg);
+  --surface-card:var(--surface);
+  --surface-sunken:var(--surface2);
+  --surface-disabled:var(--surface2);
+  --action-primary:var(--primary-dark);
+  --action-primary-hover:var(--primary-darker);
+  --action-accent:var(--primary);     /* FAB, toggle actif */
+  --overlay-scrim:linear-gradient(to bottom,rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 65%,rgba(0,0,0,0.8) 100%); /* @kind color */
+}

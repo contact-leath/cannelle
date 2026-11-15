@@ -1,0 +1,33 @@
+<!-- @dsCard group="Components" viewport="700x420" name="Patterns" subtitle="RecipeCard, Card, TabBar, BottomSheet" -->
+<!DOCTYPE html><html lang="fr"><head><meta charset="utf-8"><link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<style>body{margin:0;background:var(--bg);color:var(--text);font-family:var(--font-text)}*{box-sizing:border-box}a{color:var(--text-link)}a:hover{color:var(--text-link-hover)}.lbl{font-size:11px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--text3)}</style>
+</head><body><div id="root" style="padding:18px 20px"></div><script type="text/babel">
+const { RecipeCard, Card, TabBar, BottomSheet, Chip, Badge, Button } = window.CannelleDesignSystem_298ff7;
+function Demo(){
+  const [tab,setTab]=React.useState('recettes'); const [f,setF]=React.useState('plat');
+  return <div style={{display:'grid',gridTemplateColumns:'190px 1fr',gap:20,alignItems:'start'}}>
+    <div style={{display:'flex',flexDirection:'column',gap:10}}>
+      <span className="lbl">RecipeCard</span>
+      <RecipeCard title="Tarte aux abricots" time="45 min" badge={<Badge hue="fraise" tone="light">Dessert</Badge>} />
+    </div>
+    <div style={{display:'flex',flexDirection:'column',gap:14}}>
+      <span className="lbl">Card</span>
+      <Card><div style={{fontFamily:'var(--font-display)',fontWeight:800,fontSize:16,marginBottom:8}}>Ingrédients</div><div style={{fontSize:15,color:'var(--text2)',lineHeight:1.6}}>600 g d'abricots<br/>1 pâte brisée<br/>80 g de sucre</div></Card>
+      <span className="lbl">TabBar</span>
+      <TabBar active={tab} onChange={setTab} />
+      <span className="lbl">BottomSheet</span>
+      <BottomSheet title="Filtres">
+        <div style={{display:'flex',gap:8,flexWrap:'wrap',marginBottom:14}}>
+          {['plat','dessert','entree'].map(k=><Chip key={k} selected={f===k} onClick={()=>setF(k)}>{{plat:'Plat',dessert:'Dessert',entree:'Entrée'}[k]}</Chip>)}
+        </div>
+        <Button fullWidth>Voir les recettes</Button>
+      </BottomSheet>
+    </div>
+  </div>;
+}
+ReactDOM.createRoot(document.getElementById('root')).render(<Demo />);
+</script></body></html>
