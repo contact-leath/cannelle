@@ -980,6 +980,14 @@ function startHomeSearchRotator() {
   }, 2200);
 }
 
+// Évite de reconstruire la galerie (et de faire clignoter les photos) quand rien n'a changé
+var lastGalleryHTML = null;
+function setGalleryHTML(gallery, html) {
+  if (html === lastGalleryHTML && gallery.innerHTML) return;
+  lastGalleryHTML = html;
+  gallery.innerHTML = html;
+}
+
 function renderGallery() {
   const q = normalizeStr(document.getElementById('search-input').value);
   const baseList = recipes.filter(r => {
@@ -1017,10 +1025,10 @@ function renderGallery() {
   const gallery = document.getElementById('gallery');
   applyGalleryLayout();
   if (list.length === 0) {
-    gallery.innerHTML = `<div class="empty-state"><div class="empty-icon">🍽️</div><p>Aucune recette pour l'instant.<br>Ajoute ta première recette !</p><button onclick="openAdd()">+ Ajouter une recette</button></div>`;
+    setGalleryHTML(gallery, `<div class="empty-state"><div class="empty-icon">🍽️</div><p>Aucune recette pour l'instant.<br>Ajoute ta première recette !</p><button onclick="openAdd()">+ Ajouter une recette</button></div>`);
     return;
   }
-  gallery.innerHTML = list.map(r => {
+  setGalleryHTML(gallery, list.map(r => {
     const idx = recipes.indexOf(r);
     const inMenu = recipeMenuDays(r.id).length > 0;
     let totalTime;
@@ -1053,7 +1061,7 @@ function renderGallery() {
       </div>
       <button class="card-quick-add${inMenu ? ' added' : ''}" onclick="event.stopPropagation();openDayPicker('${r.id}')" title="${inMenu ? 'Déjà dans le menu' : 'Ajouter au menu'}"><i class="ti ti-${inMenu ? 'calendar-check' : 'calendar-plus'}"></i></button>
     </div>`;
-  }).join('');
+  }).join(''));
 }
 
 // DETAIL
