@@ -1,4 +1,4 @@
-/** Barre d'onglets basse de l'app — Accueil, Recettes, Menu, Courses. */
+/** Barre d'onglets basse de l'app — Accueil, Recettes, Atelier, Menu, Courses. */
 export interface TabBarItem { id: string; icon: string; label: string; }
 export interface TabBarProps {
   /** @default CANNELLE_TABS */

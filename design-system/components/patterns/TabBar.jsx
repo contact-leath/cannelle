@@ -3,6 +3,7 @@ import React from 'react';
 export const CANNELLE_TABS = [
   { id: 'accueil', icon: 'leaf', label: 'Accueil' },
   { id: 'recettes', icon: 'book', label: 'Recettes' },
+  { id: 'atelier', icon: 'flask', label: 'Atelier' },
   { id: 'menu', icon: 'calendar-week', label: 'Menu' },
   { id: 'courses', icon: 'shopping-cart', label: 'Courses' }
 ];

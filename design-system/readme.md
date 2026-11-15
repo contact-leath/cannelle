@@ -98,7 +98,7 @@ Pas régulier mais **non strictement 4px** — le système emploie 2, 4, 8, 10, 
 
 Marge latérale d'écran 16px ; padding de carte 20px ; padding de sheet 16px ; gap 12px dans les grilles de recettes (2 colonnes sur mobile), 8px entre chips. Hauteur de contrôle 48px, FAB 56px, cible tactile minimale 44px.
 
-**Éléments fixes** : la tab bar est ancrée en bas, flottante à 16px des bords, posée sur le fond crème ; le FAB flotte au-dessus d'elle en bas à droite, une seule instance par écran. Le contenu défile dessous avec un padding bas de ~108px pour ne jamais passer sous la barre.
+**Éléments fixes** : la tab bar (cinq onglets : Accueil, Recettes, Atelier, Menu, Courses) est ancrée en bas, flottante à 16px des bords, posée sur le fond crème ; le FAB flotte au-dessus d'elle en bas à droite, une seule instance par écran. Le contenu défile dessous avec un padding bas de ~108px pour ne jamais passer sous la barre.
 
 ### Fonds, imagerie, textures
 

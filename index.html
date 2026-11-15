@@ -59,11 +59,6 @@
   .filter-btn { position: relative; width: 36px; height: 36px; border-radius: 50%; background: var(--accent-dark); border: none; display: flex; align-items: center; justify-content: center; cursor: pointer; color: var(--text-on-primary); font-size: 17px; flex-shrink: 0; transition: background 0.15s; }
   .filter-badge-dot { position: absolute; top: 1px; right: 1px; width: 10px; height: 10px; border-radius: 50%; background: #fff; border: 2px solid var(--accent-dark); display: none; }
   .filter-badge-dot.show { display: block; }
-  .catalog-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 10px 16px 8px; flex-shrink: 0; }
-  .catalog-mode-toggle { display: flex; background: var(--surface2); border-radius: 10px; padding: 2px; border: 0.5px solid var(--border); flex: 1; }
-  .catalog-mode-item { flex: 1; display: flex; align-items: center; justify-content: center; gap: 5px; padding: 7px 8px; border: none; background: transparent; border-radius: 8px; font-size: 12.5px; font-weight: 600; color: var(--text2); cursor: pointer; font-family: var(--font); }
-  .catalog-mode-item i { font-size: 15px; }
-  .catalog-mode-item.active { background: var(--accent-dark); color: var(--text-on-primary); }
   .layout-toggle-group { display: flex; background: var(--surface2); border-radius: 10px; padding: 2px; border: 0.5px solid var(--border); }
   .layout-toggle-item { width: 32px; height: 28px; border: none; background: transparent; border-radius: 8px; display: flex; align-items: center; justify-content: center; cursor: pointer; color: var(--text3); font-size: 15px; font-family: var(--font); }
   .layout-toggle-item.active { background: var(--accent-light); color: var(--accent); }
@@ -350,12 +345,6 @@
       </div>
     </div>
     <div id="sync-bar" class="sync-bar" style="display:none"></div>
-    <div class="catalog-toolbar">
-      <div class="catalog-mode-toggle">
-        <button class="catalog-mode-item active" id="mode-btn-livre" onclick="setCatalogMode('livre')"><i class="ti ti-book"></i>Livre</button>
-        <button class="catalog-mode-item" id="mode-btn-atelier" onclick="setCatalogMode('atelier')"><i class="ti ti-flask"></i>Atelier</button>
-      </div>
-    </div>
     <div class="catalog-atelier-tabs" id="catalog-atelier-tabs" style="display:none;">
       <button class="chip" id="catalog-atelier-tab-ajuster" onclick="setCatalogAtelierTab('ajuster')">🔧 À ajuster</button>
       <button class="chip" id="catalog-atelier-tab-idee" onclick="setCatalogAtelierTab('idee')">💡 Idées</button>
@@ -589,6 +578,7 @@
   <div class="tab-bar" id="tab-bar">
     <div class="tab active" id="tab-saisons" onclick="switchTab('saisons')"><span class="tab-icon-wrap"><i class="ti ti-home"></i></span><span class="tab-label">Accueil</span></div>
     <div class="tab" id="tab-home" onclick="switchTab('home')"><span class="tab-icon-wrap"><i class="ti ti-book"></i></span><span class="tab-label">Recettes</span></div>
+    <div class="tab" id="tab-atelier" onclick="switchTab('atelier')"><span class="tab-icon-wrap"><i class="ti ti-flask"></i></span><span class="tab-label">Atelier</span></div>
     <div class="tab" id="tab-menu" onclick="switchTab('menu')"><span class="tab-icon-wrap"><i class="ti ti-calendar-week"></i></span><span class="tab-label">Menu</span></div>
     <div class="tab" id="tab-courses" onclick="switchTab('courses')"><span class="tab-icon-wrap"><i class="ti ti-shopping-cart"></i></span><span class="tab-label">Courses</span></div>
   </div>
@@ -876,12 +866,6 @@ function updateFilterBtnState() {
 }
 let catalogMode = 'livre';
 let catalogAtelierTab = 'ajuster';
-function setCatalogMode(mode) {
-  catalogMode = mode;
-  document.getElementById('mode-btn-livre').classList.toggle('active', mode === 'livre');
-  document.getElementById('mode-btn-atelier').classList.toggle('active', mode === 'atelier');
-  renderGallery();
-}
 function setCatalogAtelierTab(t) {
   catalogAtelierTab = t;
   renderGallery();
@@ -1819,22 +1803,18 @@ function renderRecipeSlider(sectionId, title, matches, emptyMessage) {
 
 function openAtelierCategory(status) {
   catalogMode = 'atelier';
-  document.getElementById('mode-btn-livre').classList.remove('active');
-  document.getElementById('mode-btn-atelier').classList.add('active');
   catalogAtelierTab = status;
   const input = document.getElementById('search-input');
   if (input) input.value = '';
   const clearBtn = document.getElementById('search-clear-btn');
   if (clearBtn) clearBtn.style.display = 'none';
-  switchTab('home');
+  switchTab('atelier');
   document.getElementById('catalog-back-btn').style.display = 'flex';
 }
 
 function closeAtelierCategory() {
   document.getElementById('catalog-back-btn').style.display = 'none';
   catalogMode = 'livre';
-  document.getElementById('mode-btn-livre').classList.add('active');
-  document.getElementById('mode-btn-atelier').classList.remove('active');
   switchTab('saisons');
 }
 
@@ -1915,8 +1895,6 @@ function openEnvieCatalog(category, label) {
   document.getElementById('catalog-back-btn').style.display = 'none';
   switchTab('home');
   catalogMode = 'livre';
-  document.getElementById('mode-btn-livre').classList.add('active');
-  document.getElementById('mode-btn-atelier').classList.remove('active');
   const categories = category.split(',');
   draftCategories = categories; draftTimeRanges = []; draftStatuses = []; draftSeasonOnly = false;
   activeCategories = categories; activeTimeRanges = []; activeStatuses = []; activeSeasonOnly = false;
@@ -1944,8 +1922,6 @@ function closeEnvieCatalog() {
   draftCategories = []; activeCategories = [];
   updateFilterBtnState();
   catalogMode = 'livre';
-  document.getElementById('mode-btn-livre').classList.add('active');
-  document.getElementById('mode-btn-atelier').classList.remove('active');
   switchTab('saisons');
 }
 
@@ -1999,14 +1975,23 @@ function setSaisonTab(t) { saisonTab = t; renderSaisonDetail(); }
 // TABS
 function switchTab(tab) {
   activeTab = tab;
-  document.getElementById('main-view').classList.toggle('hidden', tab !== 'home');
+  const isCatalog = tab === 'home' || tab === 'atelier';
+  // Recettes = le Livre, Atelier = les idées et recettes à ajuster (même vue)
+  if (isCatalog) catalogMode = tab === 'atelier' ? 'atelier' : 'livre';
+  document.getElementById('catalog-back-btn').style.display = 'none';
+  if (document.getElementById('catalog-envie-header').style.display === 'flex') {
+    resetEnvieCatalogHeader();
+    draftCategories = []; activeCategories = [];
+    updateFilterBtnState();
+  }
+  document.getElementById('main-view').classList.toggle('hidden', !isCatalog);
   document.getElementById('settings-view').classList.toggle('hidden', tab !== 'settings');
   document.getElementById('saisons-view').classList.toggle('hidden', tab !== 'saisons');
   document.getElementById('menu-view').classList.toggle('hidden', tab !== 'menu');
   document.getElementById('courses-view').classList.toggle('hidden', tab !== 'courses');
-  ['home','saisons','menu','courses','settings'].forEach(t => document.getElementById(`tab-${t}`)?.classList.toggle('active', t===tab));
-  document.getElementById('fab-add-btn').style.display = tab === 'home' ? 'flex' : 'none';
-  if (tab === 'home') { renderGallery(); }
+  ['home','atelier','saisons','menu','courses','settings'].forEach(t => document.getElementById(`tab-${t}`)?.classList.toggle('active', t===tab));
+  document.getElementById('fab-add-btn').style.display = isCatalog ? 'flex' : 'none';
+  if (isCatalog) { renderGallery(); }
   else if (tab === 'saisons') { renderSaisons(); }
   else if (tab === 'menu') { renderMenu(); }
   else if (tab === 'courses') { renderCourses(); }
